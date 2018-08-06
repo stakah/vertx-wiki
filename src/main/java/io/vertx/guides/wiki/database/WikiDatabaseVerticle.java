@@ -29,14 +29,9 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Properties;
 
-import static io.vertx.guides.wiki.DatabaseConstants.DEFAULT_JDBC_MAX_POOL_SIZE;
-import static io.vertx.guides.wiki.DatabaseConstants.DEFAULT_WIKIDB_JDBC_DRIVER_CLASS;
-import static io.vertx.guides.wiki.DatabaseConstants.DEFAULT_WIKIDB_JDBC_URL;
-
 /**
  * @author <a href="https://julien.ponge.org/">Julien Ponge</a>
  */
-// tag::dbverticle[]
 public class WikiDatabaseVerticle extends AbstractVerticle {
 
   public static final String CONFIG_WIKIDB_JDBC_URL = "wikidb.jdbc.url";
@@ -51,16 +46,14 @@ public class WikiDatabaseVerticle extends AbstractVerticle {
     HashMap<SqlQuery, String> sqlQueries = loadSqlQueries();
 
     JDBCClient dbClient = JDBCClient.createShared(vertx, new JsonObject()
-      .put("url", config().getString(CONFIG_WIKIDB_JDBC_URL, DEFAULT_WIKIDB_JDBC_URL))
-      .put("driver_class", config().getString(CONFIG_WIKIDB_JDBC_DRIVER_CLASS, DEFAULT_WIKIDB_JDBC_DRIVER_CLASS))
-      .put("max_pool_size", config().getInteger(CONFIG_WIKIDB_JDBC_MAX_POOL_SIZE, DEFAULT_JDBC_MAX_POOL_SIZE)));
+      .put("url", config().getString(CONFIG_WIKIDB_JDBC_URL, "jdbc:hsqldb:file:db/wiki"))
+      .put("driver_class", config().getString(CONFIG_WIKIDB_JDBC_DRIVER_CLASS, "org.hsqldb.jdbcDriver"))
+      .put("max_pool_size", config().getInteger(CONFIG_WIKIDB_JDBC_MAX_POOL_SIZE, 30)));
 
     WikiDatabaseService.create(dbClient, sqlQueries, ready -> {
       if (ready.succeeded()) {
         ServiceBinder binder = new ServiceBinder(vertx);
-        binder
-          .setAddress(CONFIG_WIKIDB_QUEUE)
-          .register(WikiDatabaseService.class, ready.result()); // <1>
+        binder.setAddress(CONFIG_WIKIDB_QUEUE).register(WikiDatabaseService.class, ready.result());
         startFuture.complete();
       } else {
         startFuture.fail(ready.cause());
@@ -97,4 +90,3 @@ public class WikiDatabaseVerticle extends AbstractVerticle {
     return sqlQueries;
   }
 }
-// end::dbverticle[]
