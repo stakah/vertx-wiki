@@ -2,19 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c5909238-cb18-4106-91ea-99f8ad90603d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/webroot/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/webroot/wiki.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/generated/io/vertx/guides/wiki/database/WikiDatabaseServiceVertxEBProxy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/generated/io/vertx/guides/wiki/database/WikiDatabaseServiceVertxEBProxy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/generated/io/vertx/guides/wiki/database/WikiDatabaseServiceVertxProxyHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/generated/io/vertx/guides/wiki/database/WikiDatabaseServiceVertxProxyHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/vertx/guides/wiki/DatabaseConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/vertx/guides/wiki/DatabaseConstants.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/vertx/guides/wiki/MainVerticle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/vertx/guides/wiki/MainVerticle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/vertx/guides/wiki/database/WikiDatabaseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/vertx/guides/wiki/database/WikiDatabaseService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/vertx/guides/wiki/database/WikiDatabaseServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/vertx/guides/wiki/database/WikiDatabaseServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/vertx/guides/wiki/database/WikiDatabaseVerticle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/vertx/guides/wiki/database/WikiDatabaseVerticle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/vertx/guides/wiki/database/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/vertx/guides/wiki/database/package-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/vertx/guides/wiki/http/AuthInitializerVerticle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/vertx/guides/wiki/http/AuthInitializerVerticle.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/vertx/guides/wiki/http/HttpServerVerticle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/vertx/guides/wiki/http/HttpServerVerticle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/io/vertx/guides/wiki/database/WikiDatabaseVerticleTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/vertx/guides/wiki/database/WikiDatabaseVerticleTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/io/vertx/guides/wiki/http/ApiTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/vertx/guides/wiki/http/ApiTest.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -35,8 +29,10 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="ftl" value="4" />
-          <entry key="java" value="39" />
+          <entry key="ftl" value="7" />
+          <entry key="html" value="3" />
+          <entry key="java" value="68" />
+          <entry key="js" value="3" />
           <entry key="json" value="1" />
           <entry key="lck" value="1" />
           <entry key="lobs" value="1" />
@@ -50,9 +46,11 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Bash" value="1" />
-          <entry key="JAVA" value="39" />
+          <entry key="HTML" value="3" />
+          <entry key="JAVA" value="68" />
           <entry key="JSON" value="1" />
-          <entry key="PLAIN_TEXT" value="7" />
+          <entry key="JavaScript" value="3" />
+          <entry key="PLAIN_TEXT" value="10" />
           <entry key="Properties" value="2" />
           <entry key="SQL" value="1" />
           <entry key="XML" value="9" />
@@ -62,14 +60,14 @@
         <counts>
           <entry key="dummy" value="5" />
           <entry key="ftl" value="153" />
-          <entry key="java" value="314" />
+          <entry key="java" value="445" />
           <entry key="properties" value="4" />
           <entry key="xml" value="50" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="314" />
+          <entry key="JAVA" value="445" />
           <entry key="PLAIN_TEXT" value="158" />
           <entry key="Properties" value="4" />
           <entry key="XML" value="50" />
@@ -80,119 +78,42 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/io/vertx/guides/wiki/http/HttpServerVerticle.java">
+        <entry file="file://$PROJECT_DIR$/src/test/java/io/vertx/guides/wiki/http/ApiTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="249" selection-start-line="249" selection-end-line="249" />
+            <state relative-caret-position="425">
+              <caret line="152" column="31" selection-start-line="152" selection-start-column="31" selection-end-line="152" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#11337#11338#0" expanded="true" />
-                <element signature="e#11387#11388#0" expanded="true" />
-                <element signature="e#17536#17537#0" expanded="true" />
-                <element signature="e#17584#17585#0" expanded="true" />
+                <element signature="e#2711#2712#0" expanded="true" />
+                <element signature="e#2762#2763#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/webroot/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="79">
+              <caret line="91" lean-forward="true" selection-start-line="91" selection-end-line="91" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/test/java/io/vertx/guides/wiki/database/WikiDatabaseVerticleTest.java">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/webroot/wiki.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="578">
-              <caret line="49" column="67" selection-start-line="49" selection-start-column="67" selection-end-line="49" selection-end-column="67" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1865#1866#0" expanded="true" />
-                <element signature="e#1916#1917#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="1938">
+              <caret line="170" column="6" selection-start-line="170" selection-start-column="6" selection-end-line="170" selection-end-column="6" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/io/vertx/guides/wiki/http/AuthInitializerVerticle.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/io/vertx/guides/wiki/http/HttpServerVerticle.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="219">
-              <caret line="32" column="13" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
-              <folding>
-                <element signature="e#0#5494#0" expanded="true" />
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/io/vertx/guides/wiki/database/ErrorCodes.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="26" column="1" selection-start-line="26" selection-start-column="1" selection-end-line="26" selection-end-column="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/io/vertx/guides/wiki/database/SqlQuery.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="31" column="1" selection-start-line="31" selection-start-column="1" selection-end-line="31" selection-end-column="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/io/vertx/guides/wiki/database/WikiDatabaseService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="287">
-              <caret line="38" column="17" selection-start-line="38" selection-start-column="17" selection-end-line="38" selection-end-column="17" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/io/vertx/guides/wiki/DatabaseConstants.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="30" column="14" selection-start-line="30" selection-start-column="14" selection-end-line="30" selection-end-column="14" />
-              <folding>
-                <element signature="e#0#1150#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/io/vertx/guides/wiki/database/WikiDatabaseVerticle.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="623">
-              <caret line="91" column="1" selection-start-line="91" selection-start-column="1" selection-end-line="91" selection-end-column="1" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/io/vertx/guides/wiki/database/package-info.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="23" column="46" selection-start-line="23" selection-start-column="46" selection-end-line="23" selection-end-column="46" />
-              <folding>
-                <element signature="e#0#922#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/io/vertx/guides/wiki/database/WikiDatabaseServiceImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2261">
-              <caret line="160" column="1" selection-start-line="160" selection-start-column="1" selection-end-line="160" selection-end-column="1" />
+            <state relative-caret-position="153">
+              <caret line="274" column="68" selection-start-line="274" selection-start-column="68" selection-end-line="274" selection-end-column="68" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -232,21 +153,23 @@
         <option value="$PROJECT_DIR$/src/main/resources/templates/login.ftl" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/index.ftl" />
         <option value="$PROJECT_DIR$/gen-keystore.sh" />
-        <option value="$PROJECT_DIR$/src/test/java/io/vertx/guides/wiki/http/ApiTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/io/vertx/guides/wiki/http/SampleHttpServerTest.java" />
         <option value="$PROJECT_DIR$/src/main/resources/auth-db-schema.sql" />
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/io/vertx/guides/wiki/MainVerticle.java" />
         <option value="$PROJECT_DIR$/src/main/java/io/vertx/guides/wiki/http/AuthInitializerVerticle.java" />
+        <option value="$PROJECT_DIR$/src/test/java/io/vertx/guides/wiki/database/WikiDatabaseVerticleTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/io/vertx/guides/wiki/DatabaseConstants.java" />
+        <option value="$PROJECT_DIR$/src/main/java/io/vertx/guides/wiki/MainVerticle.java" />
         <option value="$PROJECT_DIR$/src/main/java/io/vertx/guides/wiki/database/ErrorCodes.java" />
         <option value="$PROJECT_DIR$/src/main/java/io/vertx/guides/wiki/database/SqlQuery.java" />
+        <option value="$PROJECT_DIR$/src/main/java/io/vertx/guides/wiki/database/WikiDatabaseService.java" />
         <option value="$PROJECT_DIR$/src/main/java/io/vertx/guides/wiki/database/WikiDatabaseServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/io/vertx/guides/wiki/database/WikiDatabaseVerticle.java" />
         <option value="$PROJECT_DIR$/src/main/java/io/vertx/guides/wiki/database/package-info.java" />
-        <option value="$PROJECT_DIR$/src/main/java/io/vertx/guides/wiki/DatabaseConstants.java" />
-        <option value="$PROJECT_DIR$/src/main/java/io/vertx/guides/wiki/database/WikiDatabaseService.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/webroot/wiki.js" />
+        <option value="$PROJECT_DIR$/src/main/resources/webroot/index.html" />
         <option value="$PROJECT_DIR$/src/main/java/io/vertx/guides/wiki/http/HttpServerVerticle.java" />
-        <option value="$PROJECT_DIR$/src/test/java/io/vertx/guides/wiki/database/WikiDatabaseVerticleTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/io/vertx/guides/wiki/http/ApiTest.java" />
       </list>
     </option>
   </component>
@@ -356,6 +279,14 @@
               <item name="vertx-wiki" type="b2602c69:ProjectViewProjectNode" />
               <item name="vertx-wiki" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="webroot" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="vertx-wiki" type="b2602c69:ProjectViewProjectNode" />
+              <item name="vertx-wiki" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -401,7 +332,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1533575960199" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1533590730037" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/java/io/vertx/guides/wiki" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
   </component>
@@ -541,13 +472,6 @@
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/page.ftl">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/login.ftl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/db-queries.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -555,30 +479,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index.ftl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="381">
-          <caret line="30" column="4" selection-start-line="30" selection-start-column="4" selection-end-line="30" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/gen-keystore.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
           <caret line="30" column="12" selection-start-line="30" selection-start-column="12" selection-end-line="30" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/io/vertx/guides/wiki/http/ApiTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="623">
-          <caret line="184" column="1" selection-start-line="184" selection-start-column="1" selection-end-line="184" selection-end-column="1" />
-          <folding>
-            <element signature="e#0#6041#0" expanded="true" />
-            <element signature="imports" expanded="true" />
-            <element signature="e#2711#2712#0" expanded="true" />
-            <element signature="e#2762#2763#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -599,20 +503,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/io/vertx/guides/wiki/http/SampleHttpServerTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="67" column="30" selection-start-line="67" selection-start-column="30" selection-end-line="67" selection-end-column="30" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1320#1321#0" expanded="true" />
-            <element signature="e#1351#1352#0" expanded="true" />
-            <element signature="e#1405#1406#0" expanded="true" />
-            <element signature="e#1456#1457#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
@@ -620,14 +510,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/vertx/guides/wiki/MainVerticle.java">
+    <entry file="file://$PROJECT_DIR$/src/main/generated/io/vertx/guides/wiki/database/reactivex/WikiDatabaseService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="623">
-          <caret line="51" column="1" selection-start-line="51" selection-start-column="1" selection-end-line="51" selection-end-column="1" />
+        <state relative-caret-position="-391">
+          <caret line="37" column="13" selection-start-line="37" selection-start-column="13" selection-end-line="37" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/vertx/guides/wiki/http/AuthInitializerVerticle.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="219">
+          <caret line="32" column="13" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
           <folding>
-            <element signature="e#0#1808#0" expanded="true" />
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/vertx/guides/wiki/DatabaseConstants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="30" column="14" selection-start-line="30" selection-start-column="14" selection-end-line="30" selection-end-column="14" />
         </state>
       </provider>
     </entry>
@@ -645,6 +548,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/vertx/guides/wiki/database/WikiDatabaseService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="623">
+          <caret line="70" column="1" selection-start-line="70" selection-start-column="1" selection-end-line="70" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/vertx/guides/wiki/database/WikiDatabaseServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="547">
+          <caret line="148" column="1" selection-start-line="148" selection-start-column="1" selection-end-line="148" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/io/vertx/guides/wiki/database/WikiDatabaseVerticle.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="623">
@@ -657,56 +580,39 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/io/vertx/guides/wiki/database/package-info.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
+        <state relative-caret-position="68">
           <caret line="23" column="46" selection-start-line="23" selection-start-column="46" selection-end-line="23" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/io/vertx/guides/wiki/http/SampleHttpServerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="402">
+          <caret line="67" column="30" selection-start-line="67" selection-start-column="30" selection-end-line="67" selection-end-column="30" />
           <folding>
-            <element signature="e#0#922#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#1320#1321#0" expanded="true" />
+            <element signature="e#1351#1352#0" expanded="true" />
+            <element signature="e#1405#1406#0" expanded="true" />
+            <element signature="e#1456#1457#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/vertx/guides/wiki/DatabaseConstants.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/vertx/guides/wiki/MainVerticle.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="30" column="14" selection-start-line="30" selection-start-column="14" selection-end-line="30" selection-end-column="14" />
-          <folding>
-            <element signature="e#0#1150#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/vertx/guides/wiki/database/WikiDatabaseServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2261">
-          <caret line="160" column="1" selection-start-line="160" selection-start-column="1" selection-end-line="160" selection-end-column="1" />
+        <state relative-caret-position="442">
+          <caret line="41" column="1" selection-start-line="41" selection-start-column="1" selection-end-line="41" selection-end-column="1" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/generated/io/vertx/guides/wiki/database/reactivex/WikiDatabaseService.java">
+    <entry file="file://$PROJECT_DIR$/src/test/java/io/vertx/guides/wiki/database/WikiDatabaseVerticleTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-391">
-          <caret line="37" column="13" selection-start-line="37" selection-start-column="13" selection-end-line="37" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/vertx/guides/wiki/http/AuthInitializerVerticle.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="219">
-          <caret line="32" column="13" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
-          <folding>
-            <element signature="e#0#5494#0" expanded="true" />
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/vertx/guides/wiki/database/WikiDatabaseService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
-          <caret line="38" column="17" selection-start-line="38" selection-start-column="17" selection-end-line="38" selection-end-column="17" />
+        <state relative-caret-position="351">
+          <caret line="70" column="49" lean-forward="true" selection-start-line="70" selection-start-column="49" selection-end-line="70" selection-end-column="49" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -715,27 +621,51 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/io/vertx/guides/wiki/http/HttpServerVerticle.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="249" selection-start-line="249" selection-end-line="249" />
+        <state relative-caret-position="153">
+          <caret line="274" column="68" selection-start-line="274" selection-start-column="68" selection-end-line="274" selection-end-column="68" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#11337#11338#0" expanded="true" />
-            <element signature="e#11387#11388#0" expanded="true" />
-            <element signature="e#17536#17537#0" expanded="true" />
-            <element signature="e#17584#17585#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/io/vertx/guides/wiki/database/WikiDatabaseVerticleTest.java">
+    <entry file="file://$PROJECT_DIR$/src/test/java/io/vertx/guides/wiki/http/ApiTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="49" column="67" selection-start-line="49" selection-start-column="67" selection-end-line="49" selection-end-column="67" />
+        <state relative-caret-position="425">
+          <caret line="152" column="31" selection-start-line="152" selection-start-column="31" selection-end-line="152" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1865#1866#0" expanded="true" />
-            <element signature="e#1916#1917#0" expanded="true" />
+            <element signature="e#2711#2712#0" expanded="true" />
+            <element signature="e#2762#2763#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/webroot/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="79">
+          <caret line="91" lean-forward="true" selection-start-line="91" selection-end-line="91" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="30" column="4" selection-start-line="30" selection-start-column="4" selection-end-line="30" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/login.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="28" selection-start-line="4" selection-start-column="28" selection-end-line="4" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/webroot/wiki.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1938">
+          <caret line="170" column="6" selection-start-line="170" selection-start-column="6" selection-end-line="170" selection-end-column="6" />
         </state>
       </provider>
     </entry>

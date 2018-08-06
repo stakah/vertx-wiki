@@ -149,7 +149,8 @@ public class ApiTest {
         .as(BodyCodec.jsonObject())
         .sendJsonObject(new JsonObject()
           .put("id", 0)
-          .put("markdown", "Oh Yeah!"), ar -> {
+          .put("markdown", "Oh Yeah!")
+          .put("client", "vertx"), ar -> {
           if (ar.succeeded()) {
             HttpResponse<JsonObject> putResponse = ar.result();
             putRequest.complete(putResponse.body());

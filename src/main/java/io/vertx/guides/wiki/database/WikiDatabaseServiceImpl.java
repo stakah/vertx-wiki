@@ -48,39 +48,32 @@ class WikiDatabaseServiceImpl implements WikiDatabaseService {
     this.dbClient = new JDBCClient(dbClient);
     this.sqlQueries = sqlQueries;
 
-    Single<SQLConnection> connection = getConnection();
-    // tag::rx-flatmap-connection[]
-    connection
+    getConnection()
       .flatMapCompletable(conn -> conn.rxExecute(sqlQueries.get(SqlQuery.CREATE_PAGES_TABLE)))
-      // end::rx-flatmap-connection[]
       .andThen(Single.just(this))
       .subscribe(SingleHelper.toObserver(readyHandler));
   }
 
-  // tag::rx-get-connection[]
   private Single<SQLConnection> getConnection() {
     return dbClient.rxGetConnection().flatMap(conn -> {
-      Single<SQLConnection> connectionSingle = Single.just(conn); // <1>
-      return connectionSingle.doFinally(conn::close); // <2>
+      Single<SQLConnection> connectionSingle = Single.just(conn);
+      return connectionSingle.doFinally(conn::close);
     });
   }
-  // end::rx-get-connection[]
 
   @Override
-  // tag::rx-data-flow[]
   public WikiDatabaseService fetchAllPages(Handler<AsyncResult<JsonArray>> resultHandler) {
     dbClient.rxQuery(sqlQueries.get(SqlQuery.ALL_PAGES))
-      .flatMapPublisher(res -> {  // <1>
+      .flatMapPublisher(res -> {
         List<JsonArray> results = res.getResults();
-        return Flowable.fromIterable(results); // <2>
+        return Flowable.fromIterable(results);
       })
-      .map(json -> json.getString(0)) // <3>
-      .sorted() // <4>
-      .collect(JsonArray::new, JsonArray::add) // <5>
+      .map(json -> json.getString(0))
+      .sorted()
+      .collect(JsonArray::new, JsonArray::add)
       .subscribe(SingleHelper.toObserver(resultHandler));
     return this;
   }
-  // end::rx-data-flow[]
 
   @Override
   public WikiDatabaseService fetchPage(String name, Handler<AsyncResult<JsonObject>> resultHandler) {
@@ -102,11 +95,8 @@ class WikiDatabaseServiceImpl implements WikiDatabaseService {
 
   @Override
   public WikiDatabaseService fetchPageById(int id, Handler<AsyncResult<JsonObject>> resultHandler) {
-    // tag::rx-query-with-params[]
-    String query = sqlQueries.get(SqlQuery.GET_PAGE_BY_ID);
-    JsonArray params = new JsonArray().add(id);
-    Single<ResultSet> resultSet = dbClient.rxQueryWithParams(query, params);
-    // end::rx-query-with-params[]
+    Single<ResultSet> resultSet = dbClient.rxQueryWithParams(
+      sqlQueries.get(SqlQuery.GET_PAGE_BY_ID), new JsonArray().add(id));
     resultSet
       .map(result -> {
         if (result.getNumRows() > 0) {
@@ -149,13 +139,11 @@ class WikiDatabaseServiceImpl implements WikiDatabaseService {
     return this;
   }
 
-  // tag::rx-handler-to-observer[]
   @Override
-  public WikiDatabaseService fetchAllPagesData(Handler<AsyncResult<List<JsonObject>>> resultHandler) { // <1>
+  public WikiDatabaseService fetchAllPagesData(Handler<AsyncResult<List<JsonObject>>> resultHandler) {
     dbClient.rxQuery(sqlQueries.get(SqlQuery.ALL_PAGES_DATA))
       .map(ResultSet::getRows)
-      .subscribe(SingleHelper.toObserver(resultHandler));  // <2>
+      .subscribe(SingleHelper.toObserver(resultHandler));
     return this;
   }
-  // end::rx-handler-to-observer[]
 }

@@ -31,6 +31,8 @@ import io.vertx.ext.auth.jwt.JWTAuthOptions;
 import io.vertx.ext.jwt.JWTOptions;
 import io.vertx.ext.web.client.WebClientOptions;
 // tag::rx-imports[]
+import io.vertx.ext.web.handler.sockjs.BridgeOptions;
+import io.vertx.ext.web.handler.sockjs.PermittedOptions;
 import io.vertx.guides.wiki.database.reactivex.WikiDatabaseService;
 import io.vertx.reactivex.core.AbstractVerticle;
 import io.vertx.reactivex.core.http.HttpServer;
@@ -43,6 +45,7 @@ import io.vertx.reactivex.ext.web.RoutingContext;
 import io.vertx.reactivex.ext.web.client.WebClient;
 import io.vertx.reactivex.ext.web.codec.BodyCodec;
 import io.vertx.reactivex.ext.web.handler.*;
+import io.vertx.reactivex.ext.web.handler.sockjs.SockJSHandler;
 import io.vertx.reactivex.ext.web.sstore.LocalSessionStore;
 import io.vertx.reactivex.ext.web.templ.FreeMarkerTemplateEngine;
 // end::rx-imports[]
@@ -111,15 +114,42 @@ public class HttpServerVerticle extends AbstractVerticle {
     router.route("/wiki/*").handler(authHandler);
     router.route("/action/*").handler(authHandler);
 
-    router.get("/").handler(this::indexHandler);
-    router.get("/wiki/:page").handler(this::pageRenderingHandler);
-    router.post("/action/save").handler(this::pageUpdateHandler);
-    router.post("/action/create").handler(this::pageCreateHandler);
-    router.get("/action/backup").handler(this::backupHandler);
-    router.post("/action/delete").handler(this::pageDeletionHandler);
+    // tag::sockjs-handler-setup[]
+    SockJSHandler sockJSHandler = SockJSHandler.create(vertx); // <1>
+    BridgeOptions bridgeOptions = new BridgeOptions()
+      .addInboundPermitted(new PermittedOptions().setAddress("app.markdown"))  // <2>
+      .addOutboundPermitted(new PermittedOptions().setAddress("page.saved")); // <3>
+    sockJSHandler.bridge(bridgeOptions); // <4>
+    router.route("/eventbus/*").handler(sockJSHandler); // <5>
+    // end::sockjs-handler-setup[]
+
+    // tag::eventbus-markdown-consumer[]
+    vertx.eventBus().<String>consumer("app.markdown", msg -> {
+      String html = Processor.process(msg.body());
+      msg.reply(html);
+    });
+    // end::eventbus-markdown-consumer[]
+
+    //router.get("/").handler(this::indexHandler);
+    router.get("/app/*").handler(StaticHandler.create().setCachingEnabled(false));
+    router.get("/").handler(context -> context.reroute("/app/index.html"));
+//    router.get("/wiki/:page").handler(this::pageRenderingHandler);
+//    router.post("/action/save").handler(this::pageUpdateHandler);
+//    router.post("/action/create").handler(this::pageCreateHandler);
+//    router.get("/action/backup").handler(this::backupHandler);
+//    router.post("/action/delete").handler(this::pageDeletionHandler);
+    // tag::preview-rendering[]
+    router.post("/app/markdown").handler(context -> {
+      String html = Processor.process(context.getBodyAsString());
+      context.response()
+        .putHeader("Content-Type", "text/html")
+        .setStatusCode(200)
+        .end(html);
+    });
+    // end::preview-rendering[]
 
     router.get("/login").handler(this::loginHandler);
-    router.post("/login-auth").handler(FormLoginHandler.create(auth));
+    router.post("/login-auth").handler(FormLoginHandler.create(auth,"username","password","/app/index.html","/app/index.html"));
 
     router.get("/logout").handler(context -> {
       context.clearUser();
@@ -209,22 +239,40 @@ public class HttpServerVerticle extends AbstractVerticle {
   }
 
   private void apiUpdatePage(RoutingContext context) {
-    if (context.user().principal().getBoolean("canUpdate", false)) {
-      int id = Integer.valueOf(context.request().getParam("id"));
-      JsonObject page = context.getBodyAsJson();
-      if (!validateJsonPageDocument(context, page, "markdown")) {
-        return;
-      }
-      dbService.rxSavePage(id, page.getString("markdown"))
-        .subscribe(() -> apiResponse(context, 200, null, null), t -> apiFailure(context, t));
-    } else {
-      context.fail(401);
+    int id = Integer.valueOf(context.request().getParam("id"));
+    JsonObject page = context.getBodyAsJson();
+    if (!validateJsonPageDocument(context, page, "client", "markdown")) {
+      return;
     }
+    // tag::publish-on-page-updated[]
+    dbService.rxSavePage(id, page.getString("markdown"))
+      .doOnComplete(() -> { // <1>
+        JsonObject event = new JsonObject()
+          .put("id", id) // <2>
+          .put("client", page.getString("client")); // <3>
+        vertx.eventBus().publish("page.saved", event); // <4>
+      })
+      .subscribe(() -> apiResponse(context, 200, null, null), t -> apiFailure(context, t));
+    // end::publish-on-page-updated[]
   }
+//  private void apiUpdatePage(RoutingContext context) {
+//    if (context.user().principal().getBoolean("canUpdate", false)) {
+//      int id = Integer.valueOf(context.request().getParam("id"));
+//      JsonObject page = context.getBodyAsJson();
+//      if (!validateJsonPageDocument(context, page, "markdown")) {
+//        return;
+//      }
+//      dbService.rxSavePage(id, page.getString("markdown"))
+//        .subscribe(() -> apiResponse(context, 200, null, null), t -> apiFailure(context, t));
+//    } else {
+//      context.fail(401);
+//    }
+//  }
 
   private boolean validateJsonPageDocument(RoutingContext context, JsonObject page, String... expectedKeys) {
     if (!Arrays.stream(expectedKeys).allMatch(page::containsKey)) {
       LOGGER.error("Bad page creation JSON payload: " + page.encodePrettily() + " from " + context.request().remoteAddress());
+      LOGGER.error("Expected keys: " + Arrays.toString(expectedKeys));
       context.response().setStatusCode(400);
       context.response().putHeader("Content-Type", "application/json");
       context.response().end(new JsonObject()
