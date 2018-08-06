@@ -34,44 +34,25 @@ import org.junit.runner.RunWith;
 @RunWith(VertxUnitRunner.class)
 public class WikiDatabaseVerticleTest {
 
-  // tag::prepare[]
   private Vertx vertx;
   private WikiDatabaseService service;
 
   @Before
   public void prepare(TestContext context) throws InterruptedException {
     vertx = Vertx.vertx();
-
-    JsonObject conf = new JsonObject()  // <1>
+    JsonObject conf = new JsonObject()
       .put(WikiDatabaseVerticle.CONFIG_WIKIDB_JDBC_URL, "jdbc:hsqldb:mem:testdb;shutdown=true")
       .put(WikiDatabaseVerticle.CONFIG_WIKIDB_JDBC_MAX_POOL_SIZE, 4);
-
     vertx.deployVerticle(new WikiDatabaseVerticle(), new DeploymentOptions().setConfig(conf),
-      context.asyncAssertSuccess(id ->  // <2>
+      context.asyncAssertSuccess(id ->
         service = WikiDatabaseService.createProxy(vertx, WikiDatabaseVerticle.CONFIG_WIKIDB_QUEUE)));
   }
-  // end::prepare[]
 
-  // tag::finish[]
   @After
   public void finish(TestContext context) {
     vertx.close(context.asyncAssertSuccess());
   }
-  // end::finish[]
 
-  // tag::async-basic[]
-  @Test /*(timeout=5000)*/  // <8>
-  public void async_behavior(TestContext context) { // <1>
-    Vertx vertx = Vertx.vertx();  // <2>
-    context.assertEquals("foo", "foo");  // <3>
-    Async a1 = context.async();   // <4>
-    Async a2 = context.async(3);  // <5>
-    vertx.setTimer(100, n -> a1.complete());  // <6>
-    vertx.setPeriodic(100, n -> a2.countDown());  // <7>
-  }
-  // end::async-basic[]
-
-  // tag::crud[]
   @Test
   public void crud_operations(TestContext context) {
     Async async = context.async();
@@ -95,7 +76,7 @@ public class WikiDatabaseVerticleTest {
 
                 service.fetchAllPages(context.asyncAssertSuccess(array2 -> {
                   context.assertTrue(array2.isEmpty());
-                  async.complete();  // <1>
+                  async.complete();
                 }));
               });
             }));
@@ -103,7 +84,33 @@ public class WikiDatabaseVerticleTest {
         }));
       }));
     }));
-    async.awaitSuccess(5000); // <2>
+    async.awaitSuccess(5000);
   }
-  // end::crud[]
+
+  @Test
+  public void test_fetchAllPagesData(TestContext context) {
+    Async async = context.async();
+
+    service.createPage("A", "abc", context.asyncAssertSuccess(p1 -> {
+      service.createPage("B", "123", context.asyncAssertSuccess(p2 -> {
+        service.fetchAllPagesData(context.asyncAssertSuccess(data -> {
+
+          context.assertEquals(2, data.size());
+
+          JsonObject a = data.get(0);
+          context.assertEquals("A", a.getString("NAME"));
+          context.assertEquals("abc", a.getString("CONTENT"));
+
+          JsonObject b = data.get(1);
+          context.assertEquals("B", b.getString("NAME"));
+          context.assertEquals("123", b.getString("CONTENT"));
+
+          async.complete();
+
+        }));
+      }));
+    }));
+
+    async.awaitSuccess(5000);
+  }
 }
